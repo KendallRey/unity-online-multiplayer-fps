@@ -1577,6 +1577,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 4640709614800370954}
+  objectsToDestroy:
+  - {fileID: 1152430133391164516}
+  - {fileID: 6512253500139004748}
+  - {fileID: 2379205966421163917}
+  - {fileID: 2575074755939485653}
+  - {fileID: 6697502703327223621}
 --- !u!114 &7376489179065027360
 MonoBehaviour:
   m_ObjectHideFlags: 0

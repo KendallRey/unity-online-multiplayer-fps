@@ -9,31 +9,35 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     PlayerController playerController;
 
+    [SerializeField]
+    GameObject[] objectsToDestroy;
+
     PhotonView view;
-    bool isDebug = false;
 
     Vector2 movement, look;
 
     bool isPlayable()
     {
-        if (isDebug) return true;
         return view != null && view.IsMine;
     }
 
     private void Awake()
     {
-        if (!PhotonNetwork.IsConnectedAndReady)
-            isDebug = true;
         
         view = GetComponent<PhotonView>();
 
         if (!isPlayable())
         {
             enabled = false;
+            playerController.enabled = false;
+            foreach(GameObject obj in objectsToDestroy)
+            {
+                Destroy(obj);
+            }
             return;
         }
 
-        playerController.View = view;
+        playerController.SetView(view);
 
         input = new InputActions();
         playerAction = input.PlayerAction;
@@ -53,13 +57,15 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (isPlayable())
+        if (!isPlayable()) return;
+        if (input != null)
             input.Enable();
     }
 
     private void OnDisable()
     {
-        if(isPlayable())
+        if (!isPlayable()) return;
+        if(input != null)
             input.Disable();
     }
     void Start()

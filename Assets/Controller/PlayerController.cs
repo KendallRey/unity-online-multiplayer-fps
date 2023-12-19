@@ -55,26 +55,31 @@ public class PlayerController : MonoBehaviour
         healthManager.Spawner = spawner;
     }
 
+    public void SetView(PhotonView view)
+    {
+        View = view;
+    }
+
     public void ReceiveMovement(Vector2 movement)
     {
-        if (isMenuView || healthManager.IsDead) return;
+        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
         move = movement;
     }
     public void ReceiveLook(Vector2 look)
     {
-        if (isMenuView || healthManager.IsDead) return;
+        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
         mouseX = look.x * lookSensitivityX;
         mouseY = look.y * lookSensitivityY;
     }
     public void OnJumpPressed()
     {
-        if (isMenuView || healthManager.IsDead) return;
+        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
         jump = true;
     }
 
     public void OnScope()
     {
-        if (isMenuView || healthManager.IsDead) return;
+        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
         isScoped = !isScoped;
         if (isScoped)
         {
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnFire()
     {
-        if (isMenuView || healthManager.IsDead) return;
+        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
         Ray ray = new(gunPosition.position, gunPosition.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -102,11 +107,12 @@ public class PlayerController : MonoBehaviour
 
     void OnHitPlayer(PhotonView playerView)
     {
+        Debug.Log("Hit Player ID: " + playerView.ViewID);
         View.RPC("OnTakeDamage", playerView.Owner, 120f, View.ViewID);
     }
     public void OnViewMenu()
     {
-        if (healthManager.IsDead) return;
+        if (healthManager.IsDead || !View.IsMine) return;
         isMenuView = !isMenuView;
         if (isMenuView)
         {
@@ -124,6 +130,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!View.IsMine) return;
         Move();
         Look();
     }

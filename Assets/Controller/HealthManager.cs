@@ -24,11 +24,12 @@ public class HealthManager : MonoBehaviour
 
 
     [PunRPC]
-    public void OnTakeDamage(float dmg, string playerID)
+    public void OnTakeDamage(float dmg, int playerID)
     {
         Health -= dmg;
         if(Health <= 0)
         {
+            Debug.Log("DMG:" + dmg);
             Debug.Log("Health:" + Health);
             Debug.Log("Hitter:" + playerID);
             IsDead = true;
