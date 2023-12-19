@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,9 +9,18 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     PlayerController playerController;
 
+    PhotonView view;
+
     Vector2 movement, look;
     private void Awake()
     {
+        view = GetComponent<PhotonView>();
+        if(!view.IsMine)
+        {
+            enabled = false;
+            return;
+        }
+
         input = new InputActions();
         playerAction = input.PlayerAction;
 
@@ -24,11 +34,19 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!view.IsMine)
+        {
+            return;
+        }
         input.Enable();
     }
 
     private void OnDisable()
     {
+        if (!view.IsMine)
+        {
+            return;
+        }
         input.Disable();
     }
     void Start()
@@ -39,6 +57,10 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!view.IsMine)
+        {
+            return;
+        }
         playerController.ReceiveMovement(movement);
         playerController.ReceiveLook(look);
     }
