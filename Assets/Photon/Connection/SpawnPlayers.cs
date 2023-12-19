@@ -7,11 +7,30 @@ public class SpawnPlayers : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     void Start()
     {
-        SpawnPlayer();
+        if(PhotonNetwork.IsConnectedAndReady)
+            SpawnPlayerOnline();
+        else
+            SpawnPlayer();
     }
 
+    void SpawnPlayerOnline()
+    {
+        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
+        player.TryGetComponent(out PlayerController playerController);
+        if (playerController == null) return;
+        playerController.SetSpawner(this);
+    }
     void SpawnPlayer()
     {
-        PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
+        GameObject player = Instantiate(playerPrefab);
+        player.TryGetComponent(out PlayerController playerController);
+
+        playerController.SetSpawner(this);
+        player.transform.position = spawnPosition.transform.position;
+    }
+
+    public Vector3 GetRandomPosition()
+    {
+        return spawnPosition.position;
     }
 }

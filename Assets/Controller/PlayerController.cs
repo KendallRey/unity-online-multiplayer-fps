@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,10 +16,24 @@ public class PlayerController : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform footPosition;
+    [SerializeField] Transform footPosition, gunPosition;
     float xRot = 0f;
     bool isGrounded, jump;
     CharacterController characterController;
+    HealthManager healthManager;
+
+    [Header("HUD")]
+    [SerializeField] GameObject scopePanel;
+    [SerializeField] GameObject menuPanel;
+
+
+    bool isMenuView = false;
+    bool isScoped = false;
+    PhotonView view;
+    public PhotonView View { get => view; set => view = value; }
+
+    SpawnPlayers spawner;
+    public SpawnPlayers Spawner { get => spawner; set => spawner = value; }
 
     float mouseX, mouseY;
     Vector2 look, move;
@@ -27,26 +42,85 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        healthManager = GetComponent<HealthManager>();
     }
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void SetSpawner(SpawnPlayers spawner)
+    {
+        Spawner = spawner;
+        healthManager.Spawner = spawner;
+    }
+
     public void ReceiveMovement(Vector2 movement)
     {
+        if (isMenuView || healthManager.IsDead) return;
         move = movement;
     }
     public void ReceiveLook(Vector2 look)
     {
+        if (isMenuView || healthManager.IsDead) return;
         mouseX = look.x * lookSensitivityX;
         mouseY = look.y * lookSensitivityY;
     }
     public void OnJumpPressed()
     {
+        if (isMenuView || healthManager.IsDead) return;
         jump = true;
     }
 
+    public void OnScope()
+    {
+        if (isMenuView || healthManager.IsDead) return;
+        isScoped = !isScoped;
+        if (isScoped)
+        {
+            scopePanel.SetActive(true);
+        }
+        else
+        {
+            scopePanel.SetActive(false);
+        }
+    }
+    public void OnFire()
+    {
+        if (isMenuView || healthManager.IsDead) return;
+        Ray ray = new(gunPosition.position, gunPosition.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log("Hit Name: " + hit.collider.name);
+            Debug.Log("Hit Tag: " + hit.collider.tag);
+            hit.collider.TryGetComponent(out PhotonView playerView);
+            if (playerView == null) return;
+            OnHitPlayer(playerView);
+        }
+    }
+
+    void OnHitPlayer(PhotonView playerView)
+    {
+        View.RPC("OnTakeDamage", playerView.Owner, 120f, View.ViewID);
+    }
+    public void OnViewMenu()
+    {
+        if (healthManager.IsDead) return;
+        isMenuView = !isMenuView;
+        if (isMenuView)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            menuPanel.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            menuPanel.SetActive(false);
+        }
+    }
+
+ 
     // Update is called once per frame
     void Update()
     {
