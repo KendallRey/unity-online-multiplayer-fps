@@ -31,11 +31,7 @@ public class HealthManager : PlayerView
     }
     public void OnRespawn()
     {
-        Health = 100f;
-        healthText.text = Health.ToString();
-        IsDead = false;
-        deathPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+        PlayerManager.RespawnPlayerOnline(gameObject);
     }
 
 }
