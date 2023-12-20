@@ -18,14 +18,10 @@ public class SpawnPlayers : MonoBehaviour
         GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
         player.TryGetComponent(out PlayerController playerController);
         if (playerController == null) return;
-        playerController.SetSpawner(this);
     }
     void SpawnPlayer()
     {
         GameObject player = Instantiate(playerPrefab);
-        player.TryGetComponent(out PlayerController playerController);
-
-        playerController.SetSpawner(this);
         player.transform.position = spawnPosition.transform.position;
     }
 

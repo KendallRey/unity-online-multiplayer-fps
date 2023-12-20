@@ -1,18 +1,27 @@
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : PlayerView
 {
     [Header("Move Config")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpHeight = 4f;
     [SerializeField] float gravity = -30f;
 
+    const float defaultLookSensitivityX = 8f;
+    const float defaultLookSensitivityY = 0.5f;
+
     [Header("Look Config")]
     [SerializeField] Transform cameraContainer;
-    [SerializeField] float lookSensitivityX = 8f;
-    [SerializeField] float lookSensitivityY = 0.5f;
+    [SerializeField] float lookSensitivityX = defaultLookSensitivityX;
+    [SerializeField] float lookSensitivityY = defaultLookSensitivityY;
     [SerializeField] float xClamp = 85f;
+    [SerializeField] float zoomSensitivity = 0.2f;
+    [SerializeField] float maxZoom = 5f, minZoom = 40f;
+    [SerializeField] Camera playerCamera;
+
+    const float defaultZoom = 60f;
+    float currentZoom = defaultZoom;
 
     [Header("Settings")]
     [SerializeField] LayerMask groundLayer;
@@ -29,11 +38,7 @@ public class PlayerController : MonoBehaviour
 
     bool isMenuView = false;
     bool isScoped = false;
-    PhotonView view;
-    public PhotonView View { get => view; set => view = value; }
 
-    SpawnPlayers spawner;
-    public SpawnPlayers Spawner { get => spawner; set => spawner = value; }
 
     float mouseX, mouseY;
     Vector2 look, move;
@@ -46,59 +51,69 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
+        if (!view.IsMine)
+        {
+            enabled = false;
+            return;
+        }
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    public void SetSpawner(SpawnPlayers spawner)
-    {
-        Spawner = spawner;
-        healthManager.Spawner = spawner;
-    }
-
-    public void SetView(PhotonView view)
-    {
-        View = view;
     }
 
     public void ReceiveMovement(Vector2 movement)
     {
-        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         move = movement;
     }
     public void ReceiveLook(Vector2 look)
     {
-        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         mouseX = look.x * lookSensitivityX;
         mouseY = look.y * lookSensitivityY;
     }
     public void OnJumpPressed()
     {
-        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         jump = true;
     }
 
     public void OnScope()
     {
-        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         isScoped = !isScoped;
         if (isScoped)
         {
             scopePanel.SetActive(true);
+            playerCamera.fieldOfView = minZoom;
         }
         else
         {
             scopePanel.SetActive(false);
+            playerCamera.fieldOfView = defaultZoom;
+            lookSensitivityX = defaultLookSensitivityX;
+            lookSensitivityY = defaultLookSensitivityY;
         }
+    }
+
+    public void ReceiveZoom(float zoom)
+    {
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
+        if (!isScoped) return;
+        float newZoom = currentZoom + (-zoom * zoomSensitivity);
+        float clampedZoom = Mathf.Clamp(newZoom, maxZoom, minZoom);
+        float percentage = Mathf.InverseLerp(maxZoom, minZoom, clampedZoom) + 0.1f;
+
+        lookSensitivityY = defaultLookSensitivityY * percentage;
+        lookSensitivityX = defaultLookSensitivityX * percentage;
+
+        currentZoom = clampedZoom;
     }
     public void OnFire()
     {
-        if (isMenuView || healthManager.IsDead || !View.IsMine) return;
+        if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         Ray ray = new(gunPosition.position, gunPosition.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
-            Debug.Log("Hit Name: " + hit.collider.name);
-            Debug.Log("Hit Tag: " + hit.collider.tag);
             hit.collider.TryGetComponent(out PhotonView playerView);
             if (playerView == null) return;
             OnHitPlayer(playerView);
@@ -107,12 +122,12 @@ public class PlayerController : MonoBehaviour
 
     void OnHitPlayer(PhotonView playerView)
     {
-        Debug.Log("Hit Player ID: " + playerView.ViewID);
-        View.RPC("OnTakeDamage", playerView.Owner, 120f, View.ViewID);
+        playerView.RPC("RPC_OnTakeDamage", playerView.Owner, 120f, view.ViewID);
     }
+
     public void OnViewMenu()
     {
-        if (healthManager.IsDead || !View.IsMine) return;
+        if (healthManager.IsDead || !view.IsMine) return;
         isMenuView = !isMenuView;
         if (isMenuView)
         {
@@ -130,9 +145,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!View.IsMine) return;
+        if (!view.IsMine) return;
         Move();
         Look();
+        if (!isScoped) return;
+        Zoom();
     }
     void Move()
     {
@@ -165,5 +182,10 @@ public class PlayerController : MonoBehaviour
         Vector3 targetRotation = transform.eulerAngles;
         targetRotation.x = xRot;
         cameraContainer.eulerAngles = targetRotation;
+    }
+
+    void Zoom()
+    {
+        playerCamera.fieldOfView = currentZoom;
     }
 }

@@ -98,6 +98,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""68f95a17-120f-483e-8ee1-1e9a701bcb52"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Stats"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""049cb734-2eba-46cb-ac90-5cab7dd25c36"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +268,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerAction_Fire = m_PlayerAction.FindAction("Fire", throwIfNotFound: true);
         m_PlayerAction_Right = m_PlayerAction.FindAction("Right", throwIfNotFound: true);
         m_PlayerAction_Stats = m_PlayerAction.FindAction("Stats", throwIfNotFound: true);
+        m_PlayerAction_Zoom = m_PlayerAction.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +338,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_Fire;
     private readonly InputAction m_PlayerAction_Right;
     private readonly InputAction m_PlayerAction_Stats;
+    private readonly InputAction m_PlayerAction_Zoom;
     public struct PlayerActionActions
     {
         private @InputActions m_Wrapper;
@@ -329,6 +351,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_PlayerAction_Fire;
         public InputAction @Right => m_Wrapper.m_PlayerAction_Right;
         public InputAction @Stats => m_Wrapper.m_PlayerAction_Stats;
+        public InputAction @Zoom => m_Wrapper.m_PlayerAction_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +385,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Stats.started += instance.OnStats;
             @Stats.performed += instance.OnStats;
             @Stats.canceled += instance.OnStats;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
         }
 
         private void UnregisterCallbacks(IPlayerActionActions instance)
@@ -390,6 +416,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Stats.started -= instance.OnStats;
             @Stats.performed -= instance.OnStats;
             @Stats.canceled -= instance.OnStats;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
         }
 
         public void RemoveCallbacks(IPlayerActionActions instance)
@@ -417,5 +446,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnStats(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

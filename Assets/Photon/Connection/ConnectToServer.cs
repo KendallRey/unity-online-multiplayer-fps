@@ -14,7 +14,6 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         PhotonNetwork.ConnectUsingSettings();
     }
 

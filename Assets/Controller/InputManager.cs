@@ -1,7 +1,6 @@
 using UnityEngine;
-using Photon.Pun;
 
-public class InputManager : MonoBehaviour
+public class InputManager : PlayerView
 {
     InputActions input;
     InputActions.PlayerActionActions playerAction;
@@ -10,34 +9,31 @@ public class InputManager : MonoBehaviour
     PlayerController playerController;
 
     [SerializeField]
-    GameObject[] objectsToDestroy;
-
-    PhotonView view;
+    GameObject[] objectsToDestroy, objectsToEnable;
 
     Vector2 movement, look;
+    float zoom;
 
     bool isPlayable()
     {
-        return view != null && view.IsMine;
+        return view.IsMine;
     }
-
     private void Awake()
     {
-        
-        view = GetComponent<PhotonView>();
-
         if (!isPlayable())
         {
-            enabled = false;
-            playerController.enabled = false;
-            foreach(GameObject obj in objectsToDestroy)
+            foreach (GameObject obj in objectsToDestroy)
             {
                 Destroy(obj);
             }
+            enabled = false;
             return;
         }
 
-        playerController.SetView(view);
+        foreach (GameObject obj in objectsToEnable)
+        {
+            obj.SetActive(true);
+        }
 
         input = new InputActions();
         playerAction = input.PlayerAction;
@@ -47,6 +43,8 @@ public class InputManager : MonoBehaviour
         playerAction.MouseX.performed += ctx => look.x = ctx.ReadValue<float>();
         playerAction.MouseY.performed += ctx => look.y = ctx.ReadValue<float>();
 
+        playerAction.Zoom.performed += ctx => playerController.ReceiveZoom(ctx.ReadValue<float>());
+
         playerAction.Jump.performed += _ => playerController.OnJumpPressed();
 
         playerAction.Right.performed += _ => playerController.OnScope();
@@ -54,7 +52,6 @@ public class InputManager : MonoBehaviour
 
         playerAction.Back.performed += _ => playerController.OnViewMenu();
     }
-
     private void OnEnable()
     {
         if (!isPlayable()) return;
@@ -70,7 +67,7 @@ public class InputManager : MonoBehaviour
     }
     void Start()
     {
-        
+       
     }
 
     void Update()

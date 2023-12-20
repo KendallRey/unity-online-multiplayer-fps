@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
-public class HealthManager : MonoBehaviour
+public class HealthManager : PlayerView
 {
     [Header("Settings")]
     [SerializeField] float health;
@@ -13,37 +13,29 @@ public class HealthManager : MonoBehaviour
     bool isDead = false;
     public bool IsDead { get => isDead; set => isDead = value; }
 
-    SpawnPlayers spawner;
-    public SpawnPlayers Spawner { get => spawner; set => spawner = value; }
-
-    private void Update()
+    private void Start()
     {
-        if (IsDead) return;
-        healthText.text = Health.ToString();
     }
 
-
     [PunRPC]
-    public void OnTakeDamage(float dmg, int playerID)
+    public void RPC_OnTakeDamage(float dmg, int playerID)
     {
         Health -= dmg;
         if(Health <= 0)
         {
-            Debug.Log("DMG:" + dmg);
-            Debug.Log("Health:" + Health);
-            Debug.Log("Hitter:" + playerID);
             IsDead = true;
+            healthText.text = Health.ToString();
             deathPanel.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void OnRespawn()
     {
-        Vector3 randomPosition = Spawner.GetRandomPosition();
-        Debug.Log("Respawn: " + randomPosition);
         Health = 100f;
+        healthText.text = Health.ToString();
         IsDead = false;
         deathPanel.SetActive(false);
-        gameObject.transform.position = randomPosition;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }
