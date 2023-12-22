@@ -155,7 +155,7 @@ public class PlayerController : PlayerView
     }
     void Move()
     {
-        isGrounded = Physics.CheckSphere(footPosition.position, 0.1f, groundLayer);
+        isGrounded = Physics.CheckSphere(footPosition.position, 0.50f, groundLayer);
         if (isGrounded)
         {
             down.y = 0;

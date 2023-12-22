@@ -27,35 +27,42 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         SceneManager.sceneLoaded += OnSceneLoaded;
         StartCoroutine(LoadLobbyScene());
     }
-
+    float progress = 0;
+    AsyncOperation asyncOperation;
     private IEnumerator LoadLobbyScene()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(lobbyScene);
+        asyncOperation = SceneManager.LoadSceneAsync(lobbyScene);
         asyncOperation.allowSceneActivation = false;
 
         while (!asyncOperation.isDone)
         {
-            float progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
-            loadingText.text = "Loading: " + (progress * 100f).ToString("F0") + "%";
-
-            if (progress >= 0.9f)
-            {
-                loadingText.text = "DONE";
-                cueText.enabled = true;
-                canProceed = true;
-            }
-
+            OnFinishLoading();
             yield return null;
         }
     }
 
     private void Update()
     {
+        UpdateLoadingText();
+
         if (canProceed && Input.GetKeyDown(KeyCode.Space))
         {
             canProceed = false;
-            OnFinishLoading();
             SceneManager.LoadScene(lobbyScene);
+        }
+    }
+
+    void UpdateLoadingText()
+    {
+        if (asyncOperation == null) return;
+        if (!asyncOperation.isDone)
+        {
+            progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
+            loadingText.text = "Loading: " + (progress * 100f).ToString("F0") + "%";
+        }
+        else
+        {
+            loadingText.text = "DONE";
         }
     }
 
@@ -66,6 +73,8 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     private void OnFinishLoading()
     {
+        canProceed = true;
+        cueText.enabled = true;
         StopAllCoroutines();
         Debug.Log("Loading Complete!");
     }

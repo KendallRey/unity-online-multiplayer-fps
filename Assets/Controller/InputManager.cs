@@ -7,9 +7,13 @@ public class InputManager : PlayerView
 
     [SerializeField]
     PlayerController playerController;
+    [SerializeField]
+    PlayerUIManager playerUIManager;
 
     [SerializeField]
     GameObject[] objectsToDestroy, objectsToEnable;
+
+    Scoreboard scoreboard;
 
     Vector2 movement, look;
     float zoom;
@@ -36,6 +40,9 @@ public class InputManager : PlayerView
         }
 
         input = new InputActions();
+
+        scoreboard = RoomManager.Instance.Scoreboard;
+
         playerAction = input.PlayerAction;
 
         playerAction.Movement.performed += ctx => movement = ctx.ReadValue<Vector2>();
@@ -51,6 +58,10 @@ public class InputManager : PlayerView
         playerAction.Fire.performed += _ => playerController.OnFire();
 
         playerAction.Back.performed += _ => playerController.OnViewMenu();
+
+        playerAction.Scoreboard.performed += _ => scoreboard.OnViewScoreboard();
+
+        playerAction.Console.performed += _ => playerUIManager.OnViewConsole();
     }
     private void OnEnable()
     {

@@ -7,8 +7,11 @@ public class Scoreboard : MonoBehaviourPunCallbacks
 {
     [SerializeField] Transform container;
     [SerializeField] GameObject scoreboardItemPrefab;
+    [SerializeField] CanvasGroup canvasGroup;
 
     Dictionary<Player, ScoreboardItem> scoreboardItems = new Dictionary<Player, ScoreboardItem>();
+
+    bool isScoreboardOpen = false;
 
     private void Start()
     {
@@ -39,5 +42,18 @@ public class Scoreboard : MonoBehaviourPunCallbacks
     {
         Destroy(scoreboardItems[player].gameObject);
         scoreboardItems.Remove(player);
+    }
+
+    public void OnViewScoreboard()
+    {
+        isScoreboardOpen = !isScoreboardOpen;
+        if (isScoreboardOpen)
+        {
+            canvasGroup.alpha = 1f;
+        }
+        else
+        {
+            canvasGroup.alpha = 0f;
+        }
     }
 }

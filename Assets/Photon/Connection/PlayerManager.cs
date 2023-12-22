@@ -26,6 +26,11 @@ public class PlayerManager : MonoBehaviour
         {
             Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
             GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), spawnpoint.position, Quaternion.identity, 0, new object[] { PV.ViewID });
+            PlayerView[] playerViews = player.GetComponents<PlayerView>();
+            foreach(PlayerView view in playerViews)
+            {
+                view.PlayerManager = this;
+            }
         }
     }
     void SpawnPlayer()
@@ -78,7 +83,13 @@ public class PlayerManager : MonoBehaviour
 
         return position;
     }
-
+    public void Die()
+    {
+        deaths++;
+        Hashtable hash = new Hashtable();
+        hash.Add("deaths", deaths);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
     public void GetKill()
     {
         PV.RPC(nameof(RPC_GetKill), PV.Owner);

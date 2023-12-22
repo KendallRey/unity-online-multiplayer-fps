@@ -107,6 +107,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scoreboard"",
+                    ""type"": ""Button"",
+                    ""id"": ""01c1ee5d-cbb3-4d13-9862-5c845bd1fb21"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Console"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e6103d5-fe36-4dc7-9f00-30b810550adc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +270,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a0e1ded-0e2e-4dd6-8183-0ad85515a88e"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scoreboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5aa33fc-544b-4efe-8605-8adb7c0aff28"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Console"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -269,6 +309,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_PlayerAction_Right = m_PlayerAction.FindAction("Right", throwIfNotFound: true);
         m_PlayerAction_Stats = m_PlayerAction.FindAction("Stats", throwIfNotFound: true);
         m_PlayerAction_Zoom = m_PlayerAction.FindAction("Zoom", throwIfNotFound: true);
+        m_PlayerAction_Scoreboard = m_PlayerAction.FindAction("Scoreboard", throwIfNotFound: true);
+        m_PlayerAction_Console = m_PlayerAction.FindAction("Console", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +381,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_Right;
     private readonly InputAction m_PlayerAction_Stats;
     private readonly InputAction m_PlayerAction_Zoom;
+    private readonly InputAction m_PlayerAction_Scoreboard;
+    private readonly InputAction m_PlayerAction_Console;
     public struct PlayerActionActions
     {
         private @InputActions m_Wrapper;
@@ -352,6 +396,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Right => m_Wrapper.m_PlayerAction_Right;
         public InputAction @Stats => m_Wrapper.m_PlayerAction_Stats;
         public InputAction @Zoom => m_Wrapper.m_PlayerAction_Zoom;
+        public InputAction @Scoreboard => m_Wrapper.m_PlayerAction_Scoreboard;
+        public InputAction @Console => m_Wrapper.m_PlayerAction_Console;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +434,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Scoreboard.started += instance.OnScoreboard;
+            @Scoreboard.performed += instance.OnScoreboard;
+            @Scoreboard.canceled += instance.OnScoreboard;
+            @Console.started += instance.OnConsole;
+            @Console.performed += instance.OnConsole;
+            @Console.canceled += instance.OnConsole;
         }
 
         private void UnregisterCallbacks(IPlayerActionActions instance)
@@ -419,6 +471,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Scoreboard.started -= instance.OnScoreboard;
+            @Scoreboard.performed -= instance.OnScoreboard;
+            @Scoreboard.canceled -= instance.OnScoreboard;
+            @Console.started -= instance.OnConsole;
+            @Console.performed -= instance.OnConsole;
+            @Console.canceled -= instance.OnConsole;
         }
 
         public void RemoveCallbacks(IPlayerActionActions instance)
@@ -447,5 +505,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnRight(InputAction.CallbackContext context);
         void OnStats(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnScoreboard(InputAction.CallbackContext context);
+        void OnConsole(InputAction.CallbackContext context);
     }
 }

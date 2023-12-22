@@ -1536,6 +1536,7 @@ GameObject:
   - component: {fileID: 6021580881803803218}
   - component: {fileID: 9136404198400014280}
   - component: {fileID: 5907386069142968020}
+  - component: {fileID: 6676436896187259337}
   - component: {fileID: 6411342845227064429}
   - component: {fileID: 1371942072698010324}
   m_Layer: 6
@@ -1554,7 +1555,7 @@ Transform:
   m_GameObject: {fileID: 6370274763064434059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.81, y: 1.117, z: 11.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1621,7 +1622,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6370274763064434059}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 63817ebcce718fe4f882d95804de77ec, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1665,7 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
   moveSpeed: 10
-  jumpHeight: 4
+  jumpHeight: 4.5
   gravity: -30
   cameraContainer: {fileID: 6861057283833566080}
   xClamp: 85
@@ -1720,6 +1721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
   playerController: {fileID: 4640709614800370954}
+  playerUIManager: {fileID: 0}
   objectsToDestroy:
   - {fileID: 6697502703327223621}
   objectsToEnable:
@@ -1757,6 +1759,24 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &6676436896187259337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370274763064434059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6291fe74816d6844ca8be542bb681435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 1371942072698010324}
+  respawnButtons:
+  - {fileID: 5157823924981700774}
+  - {fileID: 6450761633715965624}
+  exitButtons:
+  - {fileID: 5002512549844626433}
 --- !u!114 &6411342845227064429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,8 +1792,8 @@ MonoBehaviour:
   view: {fileID: 1371942072698010324}
   health: 100
   healthText: {fileID: 4816078927535291456}
-  respawnButton: {fileID: 5157823924981700774}
   deathPanel: {fileID: 6512253500139004748}
+  capsuleCollider: {fileID: 1471282574777549868}
 --- !u!114 &1371942072698010324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,7 +1951,7 @@ Transform:
   m_GameObject: {fileID: 6930742629147643043}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.601, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
