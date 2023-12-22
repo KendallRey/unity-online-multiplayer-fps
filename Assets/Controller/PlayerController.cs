@@ -8,17 +8,19 @@ public class PlayerController : PlayerView
     [SerializeField] float jumpHeight = 4f;
     [SerializeField] float gravity = -30f;
 
-    const float defaultLookSensitivityX = 8f;
-    const float defaultLookSensitivityY = 0.5f;
 
     [Header("Look Config")]
     [SerializeField] Transform cameraContainer;
-    [SerializeField] float lookSensitivityX = defaultLookSensitivityX;
-    [SerializeField] float lookSensitivityY = defaultLookSensitivityY;
+
+    [SerializeField] const float defaultLookSensitivityX = 12f;
+    [SerializeField] const float defaultLookSensitivityY = 0.2f;
     [SerializeField] float xClamp = 85f;
     [SerializeField] float zoomSensitivity = 0.2f;
     [SerializeField] float maxZoom = 5f, minZoom = 40f;
     [SerializeField] Camera playerCamera;
+
+    float lookSensitivityX = defaultLookSensitivityX;
+    float lookSensitivityY = defaultLookSensitivityY;
 
     const float defaultZoom = 60f;
     float currentZoom = defaultZoom;
@@ -122,7 +124,7 @@ public class PlayerController : PlayerView
 
     void OnHitPlayer(PhotonView playerView)
     {
-        playerView.RPC("RPC_OnTakeDamage", playerView.Owner, 120f, view.ViewID);
+        playerView.RPC(nameof(HealthManager.RPC_OnTakeDamage), playerView.Owner, 120f);
     }
 
     public void OnViewMenu()
@@ -153,7 +155,7 @@ public class PlayerController : PlayerView
     }
     void Move()
     {
-        isGrounded = Physics.CheckSphere(footPosition.position, 0.2f, groundLayer);
+        isGrounded = Physics.CheckSphere(footPosition.position, 0.1f, groundLayer);
         if (isGrounded)
         {
             down.y = 0;

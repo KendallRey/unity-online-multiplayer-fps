@@ -9,6 +9,7 @@ public abstract class PlayerView : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = PhotonView.Find((int)view.InstantiationData[0]).GetComponent<PlayerManager>();
         if(view == null)
             view = GetComponent<PhotonView>();
     }

@@ -1,38 +1,44 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using System.Linq;
+using System.IO;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerManager : MonoBehaviour
 {
+    public PhotonView PV;
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] Transform spawnPosition;
+
+    int kills, deaths;
+    private void Awake()
+    {
+        PV = GetComponent<PhotonView>();
+    }
     void Start()
     {
-        if(PhotonNetwork.IsConnectedAndReady)
-            SpawnPlayerOnline();
-        else
-            SpawnPlayer();
+        SpawnPlayerOnline();
     }
 
     void SpawnPlayerOnline()
     {
-        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
-        player.TryGetComponent(out HealthManager healthManager);
-        if (healthManager == null) return;
-        healthManager.PlayerManager = this;
+        if (PV.IsMine)
+        {
+            Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
+            GameObject player = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Player"), spawnpoint.position, Quaternion.identity, 0, new object[] { PV.ViewID });
+        }
     }
     void SpawnPlayer()
     {
+        Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
         GameObject player = Instantiate(playerPrefab);
-        player.transform.position = spawnPosition.position;
+        player.transform.position = spawnpoint.position;
     }
 
     public void RespawnPlayerOnline(GameObject obj)
     {
         PhotonNetwork.Destroy(obj);
-        GameObject player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
-        player.TryGetComponent(out HealthManager healthManager);
-        if (healthManager == null) return;
-        healthManager.PlayerManager = this;
+        SpawnPlayerOnline();
     }
 
     [SerializeField] Transform[] spawnPositions1;
@@ -40,13 +46,16 @@ public class PlayerManager : MonoBehaviour
     public Vector3 GetRandomPosition(int group)
     {
         Vector3 position;
+        Transform spawnpoint = SpawnManager.Instance.GetSpawnpoint();
         if (spawnPositions1.Length == 0 && spawnPositions2.Length == 0)
-            return spawnPosition.position;
+        {
+            return spawnpoint.position;
+        }
         switch (group)
         {
             case 1:
                 if (spawnPositions1.Length == 0)
-                    position = spawnPosition.position;
+                    position = spawnpoint.position;
                 else
                 {
                     int index = Random.Range(0, spawnPositions1.Length - 1);
@@ -55,7 +64,7 @@ public class PlayerManager : MonoBehaviour
                 break;
             case 2:
                 if (spawnPositions2.Length == 0)
-                    position = spawnPosition.position;
+                    position = spawnpoint.position;
                 else
                 {
                     int index = Random.Range(0, spawnPositions2.Length - 1);
@@ -63,10 +72,28 @@ public class PlayerManager : MonoBehaviour
                 }
                 break;
             default:
-                position = spawnPosition.position;
+                position = spawnpoint.position;
                 break;
         }
 
         return position;
+    }
+
+    public void GetKill()
+    {
+        PV.RPC(nameof(RPC_GetKill), PV.Owner);
+    }
+
+    [PunRPC]
+    public void RPC_GetKill()
+    {
+        kills++;
+        Hashtable hash = new Hashtable();
+        hash.Add("kills", kills);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+    }
+    public static PlayerManager Find(Player player)
+    {
+        return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.PV.Owner == player);
     }
 }
