@@ -8,6 +8,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     [SerializeField] TMP_InputField createRoomInput, joinRoomInput;
     [SerializeField] Button createRoomBtn, joinRoomBtn;
     [SerializeField] TextMeshProUGUI errorMessage;
+    [SerializeField] string sceneName = "MainScene";
     string createRoomName = "", joinRoomName = "";
 
     bool isLoading = false;
@@ -68,7 +69,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         EnableStartCreateOrJoin(false);
-        PhotonNetwork.LoadLevel("MainScene");
+        PhotonNetwork.LoadLevel(sceneName);
     }
 
     private void EnableStartCreateOrJoin(bool isEnabled)
