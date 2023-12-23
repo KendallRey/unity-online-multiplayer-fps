@@ -1651,6 +1651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
   playerName: {fileID: 7784747670884022566}
 --- !u!114 &4640709614800370954
 MonoBehaviour:
@@ -1665,6 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
   moveSpeed: 10
   jumpHeight: 4.5
   gravity: -30
@@ -1720,6 +1722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
   playerController: {fileID: 4640709614800370954}
   playerUIManager: {fileID: 6676436896187259337}
   objectsToDestroy:
@@ -1772,6 +1775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
   respawnButtons:
   - {fileID: 5157823924981700774}
   - {fileID: 6450761633715965624}
@@ -1790,6 +1794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
   health: 100
   healthText: {fileID: 4816078927535291456}
   deathPanel: {fileID: 6512253500139004748}

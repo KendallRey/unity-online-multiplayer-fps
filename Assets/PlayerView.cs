@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class PlayerView : MonoBehaviour
 {
     [SerializeField] protected PhotonView view;
+    [SerializeField] protected CharacterController controller;
     protected PlayerManager playerManager;
     public PlayerManager PlayerManager { get => playerManager; set => playerManager = value; }
 
@@ -11,5 +12,7 @@ public abstract class PlayerView : MonoBehaviour
     {
         if(view == null)
             view = GetComponent<PhotonView>();
+        if(controller == null)
+            controller = GetComponent<CharacterController>();
     }
 }

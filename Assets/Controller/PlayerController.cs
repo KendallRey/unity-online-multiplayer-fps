@@ -85,11 +85,12 @@ public class PlayerController : PlayerView
         if (isScoped)
         {
             scopePanel.SetActive(true);
-            playerCamera.fieldOfView = minZoom;
+            currentZoom = minZoom;
         }
         else
         {
             scopePanel.SetActive(false);
+            currentZoom = defaultZoom;
             playerCamera.fieldOfView = defaultZoom;
             lookSensitivityX = defaultLookSensitivityX;
             lookSensitivityY = defaultLookSensitivityY;
@@ -147,7 +148,7 @@ public class PlayerController : PlayerView
     // Update is called once per frame
     void Update()
     {
-        if (!view.IsMine) return;
+        if (!view.IsMine || healthManager.IsDead) return;
         Move();
         Look();
         if (!isScoped) return;

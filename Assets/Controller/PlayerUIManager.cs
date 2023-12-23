@@ -7,8 +7,8 @@ public class PlayerUIManager : PlayerView
     [SerializeField] Button[] respawnButtons;
     [SerializeField] Button[] exitButtons;
 
-    GameObject consoleCanvas;
-    public GameObject ConsoleCanvas { get => consoleCanvas; set => consoleCanvas = value; }
+    ConsoleManager consoleManager;
+    public ConsoleManager ConsoleMananger { get => consoleManager; set => consoleManager = value; }
 
     bool isConsoleShowing = false;
     private void Start()
@@ -40,21 +40,21 @@ public class PlayerUIManager : PlayerView
         if (isConsoleEnabled)
         {
             Debug.Log("Console Commands Enabled");
-            ConsoleCanvas = RoomManager.Instance.ConsoleCanvas;
+            consoleManager = RoomManager.Instance.ConsoleManager;
         }
     }
 
     public void OnViewConsole()
     {
-        if (ConsoleCanvas == null) return;
+        if (consoleManager == null) return;
         isConsoleShowing = !isConsoleShowing;
         if (isConsoleShowing)
         {
-            ConsoleCanvas.SetActive(true);
+            consoleManager.SetConsoleCanvasActive(true);
         }
         else
         {
-            ConsoleCanvas.SetActive(false);
+            consoleManager.SetConsoleCanvasActive(true);
         }
     }
 

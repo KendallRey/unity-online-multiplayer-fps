@@ -33,14 +33,12 @@ public class HealthManager : PlayerView
             PlayerManager.Find(info.Sender).GetKill();
         }
     }
-
-    void Die()
+    public void Die()
     {
         IsDead = true;
         healthText.text = Health.ToString();
         deathPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-
         view.RPC(nameof(OnPlayerDie), RpcTarget.Others);
         playerManager.Die();
     }

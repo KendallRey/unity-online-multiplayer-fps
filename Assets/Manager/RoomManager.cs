@@ -8,8 +8,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
 	[SerializeField] Scoreboard scoreboard;
 	public Scoreboard Scoreboard { get => scoreboard; private set => scoreboard = value; }
 
-	[SerializeField] GameObject consoleCanvas;
-	public GameObject ConsoleCanvas { get => consoleCanvas; private set => consoleCanvas = value; }
+	[SerializeField] ConsoleManager consoleManager;
+	public ConsoleManager ConsoleManager { get => consoleManager; private set => consoleManager = value; }
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -31,9 +31,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
 		PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerManager"), Vector3.zero, Quaternion.identity);
 	}
 
-	
-
-	public void ExitGame()
+    private void OnTriggerEnter(Collider other)
+	{
+		Debug.Log("Entered : " + other.name);
+		if (other.TryGetComponent(out HealthManager healthManager))
+        {
+			healthManager.Die();
+        }
+    }
+    public void ExitGame()
     {
 		// Check if the application is running in the Unity Editor
 		#if UNITY_EDITOR
