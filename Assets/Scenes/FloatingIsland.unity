@@ -1985,6 +1985,100 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 209862033}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &212145716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212145717}
+  - component: {fileID: 212145718}
+  m_Layer: 0
+  m_Name: BulletHitConcretePooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &212145717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212145716}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267439080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212145718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212145716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99055511e3973824383f3a968fbfb12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPrefabs:
+  - {fileID: 9083622776543919309, guid: 793364c7a4f976f479b55ee36e5c5b1f, type: 3}
+  - {fileID: 8009361181685324614, guid: dbebcb23bfbda6043afedd373b09f72e, type: 3}
+--- !u!1 &215004796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215004797}
+  - component: {fileID: 215004798}
+  m_Layer: 0
+  m_Name: BulletHitWoodPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &215004797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215004796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267439080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &215004798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215004796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99055511e3973824383f3a968fbfb12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPrefabs:
+  - {fileID: 7423980831810430366, guid: 73290201abeee154380f795f60f0ced0, type: 3}
+  - {fileID: 719904137415972042, guid: c800abc069578c444b4f30d15937b5ee, type: 3}
 --- !u!1001 &216733166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10395,7 +10489,7 @@ GameObject:
   - component: {fileID: 934549532}
   m_Layer: 3
   m_Name: ======Cylinder======
-  m_TagString: Untagged
+  m_TagString: Concrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -14379,6 +14473,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1187864974}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1189238050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189238051}
+  - component: {fileID: 1189238052}
+  m_Layer: 0
+  m_Name: BulletHitFleshPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189238051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189238050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267439080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189238052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189238050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99055511e3973824383f3a968fbfb12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPrefabs:
+  - {fileID: 7543296390960908912, guid: 8942e95c11dce12499739fcc247f3322, type: 3}
+  - {fileID: 353388501202029095, guid: e6b6dd452d82d3941a54573582df0ae5, type: 3}
 --- !u!1001 &1189751796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14689,7 +14830,7 @@ GameObject:
   - component: {fileID: 1242259341}
   m_Layer: 3
   m_Name: ======Cylinder.1======
-  m_TagString: Untagged
+  m_TagString: Concrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -14934,6 +15075,58 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1247978288}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1267439077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1267439080}
+  - component: {fileID: 1267439079}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1267439079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267439077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23d356acebaaf442b8d2d0f5ffc992b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHitWoodPooler: {fileID: 215004798}
+  bulletHitMetalPooler: {fileID: 2120865455}
+  bulletHitConcretePooler: {fileID: 212145718}
+  bulletHitFleshPooler: {fileID: 1189238052}
+--- !u!4 &1267439080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267439077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.853218, y: -10.299134, z: -10.031565}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 215004797}
+  - {fileID: 2120865454}
+  - {fileID: 212145717}
+  - {fileID: 1189238051}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1286793585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24382,6 +24575,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2105667579}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2120865453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2120865454}
+  - component: {fileID: 2120865455}
+  m_Layer: 0
+  m_Name: BulletHitMetalPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2120865454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120865453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1267439080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2120865455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120865453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99055511e3973824383f3a968fbfb12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxPrefabs:
+  - {fileID: 2935075908683869473, guid: 08d265428117f9349982ddb236dd7bb7, type: 3}
+  - {fileID: 2255265296916256713, guid: 85f39c82e94440746b46541c053fe32a, type: 3}
 --- !u!1001 &2126269342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26642,3 +26882,4 @@ SceneRoots:
   - {fileID: 1242259344}
   - {fileID: 605737440}
   - {fileID: 357425111}
+  - {fileID: 1267439080}

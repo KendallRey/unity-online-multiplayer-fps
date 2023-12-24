@@ -117,6 +117,7 @@ public class PlayerController : PlayerView
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
+            SFXManager.Instance.OnBulletHitSFX(view, hit.collider, hit.point);
             hit.collider.TryGetComponent(out PhotonView playerView);
             if (playerView == null) return;
             OnHitPlayer(playerView);

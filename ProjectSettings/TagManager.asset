@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - Wood
+  - Metal
+  - Concrete
+  - Flesh
   layers:
   - Default
   - TransparentFX

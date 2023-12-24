@@ -43,6 +43,8 @@ MonoBehaviour:
   - RPC_OnTakeDamage
   - RPC_GetKill
   - OnPlayerDie
+  - RPC_OnBulletHit
+  - RPC_OnFire
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
