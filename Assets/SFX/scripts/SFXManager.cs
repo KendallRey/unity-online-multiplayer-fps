@@ -4,7 +4,6 @@ using Photon.Pun;
 
 public class SFXManager : MonoBehaviour
 {
-	public static SFXManager Instance;
 
 	const string WOOD = "Wood";
 	const string METAL = "Metal";
@@ -17,19 +16,8 @@ public class SFXManager : MonoBehaviour
 	[SerializeField] SFXPooler bulletHitFleshPooler;
 	[SerializeField] SFXPooler bulletShootPooler;
 
-	[SerializeField] PhotonView PV;
-	void Awake()
-	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			Instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
-	}
+	[SerializeField] PhotonView pv;
+	public PhotonView PV { get => pv; set => pv = value; }
 	public void OnFireSFX(Vector3 position)
 	{
 		bulletShootPooler.GetSFXItem(position);

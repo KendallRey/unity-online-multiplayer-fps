@@ -35,6 +35,8 @@ public class PlayerController : PlayerView
     bool isGrounded, jump, isReloaded = true;
     CharacterController characterController;
     HealthManager healthManager;
+    [SerializeField] SFXManager sfxManager;
+    [SerializeField] FXManager fxManager;
 
     [Header("HUD")]
     [SerializeField] GameObject scopePanel;
@@ -120,13 +122,13 @@ public class PlayerController : PlayerView
         Ray ray = new(gunPosition.position, gunPosition.forward);
         currentReloadTime = reloadTime;
         isReloaded = false;
-        SFXManager.Instance.OnFireSFX(ray.origin);
+        sfxManager.OnFireSFX(ray.origin);
         reloadAudioSource.PlayDelayed(reloadTime - reloadAudioTime);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider.tag == "Border") return;
-            SFXManager.Instance.OnBulletHitSFX(hit.collider, hit.point);
-            FXManager.Instance.OnBulletHitFX(hit.collider, hit.point, ray.origin);
+            sfxManager.OnBulletHitSFX(hit.collider, hit.point);
+            fxManager.OnBulletHitFX(hit.collider, hit.point, ray.origin);
             hit.collider.TryGetComponent(out PhotonView playerView);
             if (playerView == null) return;
             OnHitPlayer(playerView);

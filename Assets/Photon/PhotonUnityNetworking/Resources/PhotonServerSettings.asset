@@ -46,6 +46,8 @@ MonoBehaviour:
   - RPC_OnBulletHit
   - RPC_OnFire
   - RPC_OnBulletHitFX
+  - MakeMeInvisible
+  - RPC_MakeMeInvisible
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class PlayerUIManager : PlayerView
 {
@@ -41,6 +42,7 @@ public class PlayerUIManager : PlayerView
         {
             Debug.Log("Console Commands Enabled");
             consoleManager = RoomManager.Instance.ConsoleManager;
+            consoleManager.ConsoleInput.onEndEdit.AddListener(OnEnterCommand);
         }
     }
 
@@ -54,7 +56,38 @@ public class PlayerUIManager : PlayerView
         }
         else
         {
-            consoleManager.SetConsoleCanvasActive(true);
+            consoleManager.SetConsoleCanvasActive(false);
+        }
+    }
+
+
+    #endregion
+
+    #region Commands
+
+    const string MakeMeInvisible = "MakeMeInvisible";
+    public void OnEnterCommand(string commandText)
+    {
+        string[] commands = commandText.Split(" ");
+        if (commands.Length != 2) return;
+        bool isTrue = commandText.Contains("true");
+        switch (commands[0])
+        {
+            case MakeMeInvisible:
+                consoleManager.AddConsoleItem(commandText);
+                view.RPC(nameof(RPC_MakeMeInvisible), RpcTarget.Others, isTrue);
+                break;
+        }
+    }
+
+    [PunRPC]
+    public void RPC_MakeMeInvisible(bool isTrue)
+    {
+        if (view.IsMine) return;
+        MeshRenderer[] meshRenderers = transform.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers)
+        {
+            meshRenderer.enabled = !isTrue;
         }
     }
 

@@ -3,7 +3,6 @@ using Photon.Pun;
 
 public class FXManager : MonoBehaviour
 {
-	public static FXManager Instance;
 
 	const string WOOD = "Wood";
 	const string METAL = "Metal";
@@ -15,19 +14,8 @@ public class FXManager : MonoBehaviour
 	[SerializeField] FXPooler bulletHitConcretePooler;
 	[SerializeField] FXPooler bulletHitFleshPooler;
 
-	[SerializeField] PhotonView PV;
-	void Awake()
-	{
-		if (Instance != null && Instance != this)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			Instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
-	}
+	[SerializeField] PhotonView pv;
+	public PhotonView PV { get => pv; set => pv = value; }
 	public void OnBulletHitFX(Collider collider, Vector3 position, Vector3 origin)
 	{
 		Vector3 direction = origin - position;
