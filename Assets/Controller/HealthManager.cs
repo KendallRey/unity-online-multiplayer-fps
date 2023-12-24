@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 
@@ -9,6 +8,8 @@ public class HealthManager : PlayerView
     [SerializeField] float health;
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] GameObject deathPanel;
+    [SerializeField] SFXManager sfxManager;
+    [SerializeField] FXManager fxManager;
 
     [Header("Disable on Death")]
     [SerializeField] CapsuleCollider capsuleCollider;
@@ -39,6 +40,7 @@ public class HealthManager : PlayerView
         healthText.text = Health.ToString();
         deathPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        fxManager.OnDieFX(transform.position);
         view.RPC(nameof(OnPlayerDie), RpcTarget.Others);
         playerManager.Die();
     }

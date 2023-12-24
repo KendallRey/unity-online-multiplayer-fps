@@ -47,7 +47,7 @@ public class FXPooler : MonoBehaviour
     public void GetFXItem(Vector3 position)
     {
         FXItem fxItem = FXPool.Get();
-        fxItem.transform.position = position;
+        fxItem.transform.SetPositionAndRotation(position, Quaternion.identity);
     }
     public void GetFXItem(Vector3 position, Quaternion rotation)
     {

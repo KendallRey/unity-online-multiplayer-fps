@@ -16,6 +16,18 @@ public class FXManager : MonoBehaviour
 
 	[SerializeField] PhotonView pv;
 	public PhotonView PV { get => pv; set => pv = value; }
+	public void OnDieFX(Vector3 position)
+	{
+		bulletHitFleshPooler.GetFXItem(position);
+		PV.RPC(nameof(RPC_OnDieFX), RpcTarget.Others, position);
+	}
+
+	[PunRPC]
+	public void RPC_OnDieFX(Vector3 position)
+	{
+		if (PV.IsMine) return;
+		bulletHitFleshPooler.GetFXItem(position);
+	}
 	public void OnBulletHitFX(Collider collider, Vector3 position, Vector3 origin)
 	{
 		Vector3 direction = origin - position;
@@ -23,7 +35,6 @@ public class FXManager : MonoBehaviour
 		OnGetFXPooler(collider.tag, position, rotation);
 		PV.RPC(nameof(RPC_OnBulletHitFX), RpcTarget.Others, collider.tag, position, rotation);
 	}
-
 
 	[PunRPC]
 	public void RPC_OnBulletHitFX(string type, Vector3 position, Quaternion rotation)

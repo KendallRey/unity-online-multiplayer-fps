@@ -1804,6 +1804,8 @@ MonoBehaviour:
   health: 100
   healthText: {fileID: 4816078927535291456}
   deathPanel: {fileID: 6512253500139004748}
+  sfxManager: {fileID: 6810025256877901715}
+  fxManager: {fileID: 7654975473637515222}
   capsuleCollider: {fileID: 1471282574777549868}
 --- !u!114 &1371942072698010324
 MonoBehaviour:
