@@ -28,8 +28,11 @@ public class PlayerController : PlayerView
     [Header("Settings")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform footPosition, gunPosition;
-    float xRot = 0f;
-    bool isGrounded, jump;
+    [SerializeField] float reloadTime = 2f;
+    [SerializeField] float reloadAudioTime = 1.5f;
+    [SerializeField] AudioSource reloadAudioSource;
+    float xRot = 0f, currentReloadTime = 0f;
+    bool isGrounded, jump, isReloaded = true;
     CharacterController characterController;
     HealthManager healthManager;
 
@@ -112,8 +115,13 @@ public class PlayerController : PlayerView
     }
     public void OnFire()
     {
+        if (!isReloaded) return;
         if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         Ray ray = new(gunPosition.position, gunPosition.forward);
+        currentReloadTime = reloadTime;
+        isReloaded = false;
+        SFXManager.Instance.OnFireSFX(ray.origin);
+        reloadAudioSource.PlayDelayed(reloadTime - reloadAudioTime);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (hit.collider.tag == "Border") return;
@@ -145,16 +153,21 @@ public class PlayerController : PlayerView
             menuPanel.SetActive(false);
         }
     }
-
- 
-    // Update is called once per frame
     void Update()
     {
+        Reload();
         if (!view.IsMine || healthManager.IsDead) return;
         Move();
         Look();
         if (!isScoped) return;
         Zoom();
+    }
+
+    void Reload()
+    {
+        if (!isReloaded) currentReloadTime -= Time.deltaTime;
+        if (currentReloadTime <= 0)
+            isReloaded = true;
     }
     void Move()
     {

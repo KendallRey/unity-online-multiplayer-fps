@@ -9,6 +9,7 @@ TagManager:
   - Metal
   - Concrete
   - Flesh
+  - Border
   layers:
   - Default
   - TransparentFX
