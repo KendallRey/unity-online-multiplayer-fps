@@ -3165,6 +3165,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 387799218}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &404301245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404301246}
+  - component: {fileID: 404301247}
+  m_Layer: 0
+  m_Name: BulletHitMetalPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404301246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404301245}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.089844, y: -18.330498, z: -0.856946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063208817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404301247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404301245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d757d5f36eae954fa4347bf4f1cd4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxPrefabs:
+  - {fileID: 765992204166436470, guid: 8c2e5d729fb297c4e923624592599d56, type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -13921,6 +13967,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1150946136}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1155097515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155097516}
+  m_Layer: 0
+  m_Name: ===MANAGERS===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155097516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155097515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.0123, y: 18.516224, z: -2.1999264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1166654718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15085,6 +15162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1267439080}
   - component: {fileID: 1267439079}
+  - component: {fileID: 1267439081}
   m_Layer: 0
   m_Name: SFXManager
   m_TagString: Untagged
@@ -15108,6 +15186,7 @@ MonoBehaviour:
   bulletHitMetalPooler: {fileID: 2120865455}
   bulletHitConcretePooler: {fileID: 212145718}
   bulletHitFleshPooler: {fileID: 1189238052}
+  PV: {fileID: 1267439081}
 --- !u!4 &1267439080
 Transform:
   m_ObjectHideFlags: 0
@@ -15127,6 +15206,28 @@ Transform:
   - {fileID: 1189238051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267439081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267439077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 998
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1286793585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18634,6 +18735,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1641869191}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1678028808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678028809}
+  m_Layer: 0
+  m_Name: ===MANAGERS===
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1678028809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678028808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18.0123, y: 18.516224, z: -2.1999264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1683135107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20340,6 +20472,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1767803561}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1791906423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791906424}
+  - component: {fileID: 1791906425}
+  m_Layer: 0
+  m_Name: BulletHitWoodPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1791906424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791906423}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.089844, y: -18.330498, z: -0.856946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063208817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1791906425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791906423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d757d5f36eae954fa4347bf4f1cd4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxPrefabs:
+  - {fileID: 220341041103155276, guid: 83227c8c6e75b6e4f895f48cad93a21e, type: 3}
 --- !u!1001 &1792185885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20519,6 +20697,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1792185885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795165752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795165753}
+  - component: {fileID: 1795165754}
+  m_Layer: 0
+  m_Name: BulletHitFleshPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795165753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795165752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.089844, y: -18.330498, z: -0.856946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063208817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795165754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795165752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d757d5f36eae954fa4347bf4f1cd4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxPrefabs:
+  - {fileID: 7771749936939857151, guid: 4c37a741ec54c394789a0ce2f3e437c4, type: 3}
 --- !u!1001 &1810882624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24348,6 +24572,82 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2053550556}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2063208815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063208817}
+  - component: {fileID: 2063208816}
+  - component: {fileID: 2063208818}
+  m_Layer: 0
+  m_Name: FXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2063208816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063208815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e1344f859f08f4b9fbd3cf39d1514f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletHitWoodPooler: {fileID: 1791906425}
+  bulletHitMetalPooler: {fileID: 404301247}
+  bulletHitConcretePooler: {fileID: 2092522185}
+  bulletHitFleshPooler: {fileID: 1795165754}
+  PV: {fileID: 2063208818}
+--- !u!4 &2063208817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063208815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.236624, y: 8.031363, z: -9.174619}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1791906424}
+  - {fileID: 404301246}
+  - {fileID: 2092522184}
+  - {fileID: 1795165753}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063208818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063208815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 997
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &2083772169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24427,6 +24727,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2083772169}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2092522183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092522184}
+  - component: {fileID: 2092522185}
+  m_Layer: 0
+  m_Name: BulletHitConcretePooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2092522184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092522183}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.089844, y: -18.330498, z: -0.856946}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063208817}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2092522185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092522183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d757d5f36eae954fa4347bf4f1cd4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fxPrefabs:
+  - {fileID: 5283505111961480223, guid: cd2726644a3597242a350c214608d4f4, type: 3}
 --- !u!1001 &2101607003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26872,7 +27218,11 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 593428796}
   - {fileID: 992520634}
+  - {fileID: 1678028809}
   - {fileID: 136191507}
+  - {fileID: 1267439080}
+  - {fileID: 2063208817}
+  - {fileID: 1155097516}
   - {fileID: 74849343}
   - {fileID: 1013038396}
   - {fileID: 2000969300}
@@ -26882,4 +27232,3 @@ SceneRoots:
   - {fileID: 1242259344}
   - {fileID: 605737440}
   - {fileID: 357425111}
-  - {fileID: 1267439080}

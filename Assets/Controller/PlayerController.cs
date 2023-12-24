@@ -114,10 +114,11 @@ public class PlayerController : PlayerView
     {
         if (isMenuView || healthManager.IsDead || !view.IsMine) return;
         Ray ray = new(gunPosition.position, gunPosition.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            SFXManager.Instance.OnBulletHitSFX(view, hit.collider, hit.point);
+            if (hit.collider.tag == "Border") return;
+            SFXManager.Instance.OnBulletHitSFX(hit.collider, hit.point);
+            FXManager.Instance.OnBulletHitFX(hit.collider, hit.point, ray.origin);
             hit.collider.TryGetComponent(out PhotonView playerView);
             if (playerView == null) return;
             OnHitPlayer(playerView);

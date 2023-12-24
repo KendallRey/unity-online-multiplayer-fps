@@ -16,6 +16,7 @@ public class SFXManager : MonoBehaviour
 	[SerializeField] SFXPooler bulletHitConcretePooler;
 	[SerializeField] SFXPooler bulletHitFleshPooler;
 
+	[SerializeField] PhotonView PV;
 	void Awake()
 	{
 		if (Instance != null && Instance != this)
@@ -25,6 +26,7 @@ public class SFXManager : MonoBehaviour
 		else
 		{
 			Instance = this;
+			DontDestroyOnLoad(gameObject);
 		}
 	}
 	public void OnFireSFX(PhotonView pv, Vector3 position)
@@ -36,16 +38,17 @@ public class SFXManager : MonoBehaviour
 	{
 	}
 
-	public void OnBulletHitSFX(PhotonView pv, Collider collider, Vector3 position)
+	public void OnBulletHitSFX(Collider collider, Vector3 position)
     {
 		OnGetSFXPooler(collider.tag, position);
-		pv.RPC(nameof(RPC_OnBulletHit), RpcTarget.Others, collider.tag, position);
+		PV.RPC(nameof(RPC_OnBulletHit), RpcTarget.Others, collider.tag, position);
 	}
 
 
 	[PunRPC]
 	public void RPC_OnBulletHit(string type, Vector3 position)
 	{
+		if (PV.IsMine) return;
 		OnGetSFXPooler(type, position);
 	}
 
