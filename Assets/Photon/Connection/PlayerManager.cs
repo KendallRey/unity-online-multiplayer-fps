@@ -3,6 +3,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
 using System.IO;
+using UnityEngine.SceneManagement;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerManager : MonoBehaviour
@@ -103,6 +104,13 @@ public class PlayerManager : MonoBehaviour
         hash.Add("kills", kills);
         PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
+
+    public void QuitGame()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(SceneConstants.LOBBY_SCENE);
+    }
+
     public static PlayerManager Find(Player player)
     {
         return FindObjectsOfType<PlayerManager>().SingleOrDefault(x => x.PV.Owner == player);

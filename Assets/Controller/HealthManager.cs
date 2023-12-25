@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using System;
 
 public class HealthManager : PlayerView
 {
@@ -36,13 +37,24 @@ public class HealthManager : PlayerView
     }
     public void Die()
     {
+        if (!view.IsMine) return;
+
         IsDead = true;
         healthText.text = Health.ToString();
         deathPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        fxManager.OnDieFX(transform.position);
-        view.RPC(nameof(OnPlayerDie), RpcTarget.Others);
-        playerManager.Die();
+
+        try
+        {
+            fxManager.OnDieFX(transform.position);
+            view.RPC(nameof(OnPlayerDie), RpcTarget.Others);
+            playerManager.Die();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("OOF: " + e.Message);
+        }
+        
     }
 
     [PunRPC]
@@ -52,7 +64,8 @@ public class HealthManager : PlayerView
         capsuleCollider.enabled = false;
         foreach(MeshRenderer mr in meshRenderers)
         {
-            mr.enabled = false;
+            if(mr != null)
+                mr.enabled = false;
         }
     }
 }

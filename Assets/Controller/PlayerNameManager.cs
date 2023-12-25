@@ -11,14 +11,13 @@ public class PlayerNameManager : MonoBehaviour
     {
         string defaultNickname = "Player " + Random.Range(0, 1000).ToString("0000");
         nickname = PlayerPrefs.GetString("nickname", defaultNickname);
-        PhotonNetwork.NickName = nickname;
-        PlayerPrefs.SetString("ConsoleEnabled", "No");
-        Debug.Log("Console Commands Disabled by Default");
     }
 
     private void Start()
     {
         nicknameInput.text = nickname;
+        PhotonNetwork.NickName = nickname;
+        PlayerPrefs.SetString("ConsoleEnabled", "No");
     }
     public void OnChangeNickname()
     {

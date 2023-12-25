@@ -9,8 +9,6 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     [SerializeField] TextMeshProUGUI loadingText;
     [SerializeField] TextMeshProUGUI cueText;
 
-    [SerializeField] string lobbyScene;
-
     float progress = 0;
     bool canProceed = false;
 
@@ -32,7 +30,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     AsyncOperation asyncOperation;
     private IEnumerator LoadLobbyScene()
     {
-        asyncOperation = SceneManager.LoadSceneAsync(lobbyScene);
+        asyncOperation = SceneManager.LoadSceneAsync(SceneConstants.LOBBY_SCENE);
         asyncOperation.allowSceneActivation = false;
 
         while (!asyncOperation.isDone)
@@ -48,14 +46,14 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         if (canProceed && Input.GetKeyDown(KeyCode.Space))
         {
             canProceed = false;
-            SceneManager.LoadScene(lobbyScene);
+            SceneManager.LoadScene(SceneConstants.LOBBY_SCENE);
         }
     }
 
     void UpdateLoadingText()
     {
         if (asyncOperation == null || canProceed) return;
-        Debug.Log("teste");
+
         progress = Mathf.Clamp01(asyncOperation.progress / 0.9f);
 
         if (progress >= 1)
@@ -75,6 +73,5 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         cueText.enabled = true;
         loadingText.text = "DONE";
         StopAllCoroutines();
-        Debug.Log("Loading Complete!");
     }
 }

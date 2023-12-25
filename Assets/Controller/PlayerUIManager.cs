@@ -6,6 +6,7 @@ public class PlayerUIManager : PlayerView
 {
 
     [SerializeField] Button[] respawnButtons;
+    [SerializeField] Button[] quitButtons;
     [SerializeField] Button[] exitButtons;
 
     ConsoleManager consoleManager;
@@ -16,6 +17,7 @@ public class PlayerUIManager : PlayerView
     {
         SetConsole();
         SetRespawnButtons();
+        SetQuitButtons();
         SetExitButtons();
     }
 
@@ -31,6 +33,13 @@ public class PlayerUIManager : PlayerView
         foreach (Button button in exitButtons)
         {
             button.onClick.AddListener(() => RoomManager.Instance.ExitGame());
+        }
+    }
+    void SetQuitButtons()
+    {
+        foreach (Button button in quitButtons)
+        {
+            button.onClick.AddListener(() => playerManager.QuitGame());
         }
     }
     #region Console
