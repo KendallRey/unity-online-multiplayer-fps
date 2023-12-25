@@ -1492,10 +1492,10 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -2381,6 +2381,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2296728080448975574}
     m_Modifications:
+    - target: {fileID: 1471459629501338902, guid: 5d55c0b524b6d4946a129ed04f1a07b6,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5485028527021205406, guid: 5d55c0b524b6d4946a129ed04f1a07b6,
         type: 3}
       propertyPath: m_Name
@@ -2471,6 +2476,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SFXManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4729300594466221271, guid: e6871668cc207754e8f2e40e6c022952,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9089077934909544361, guid: e6871668cc207754e8f2e40e6c022952,
         type: 3}
