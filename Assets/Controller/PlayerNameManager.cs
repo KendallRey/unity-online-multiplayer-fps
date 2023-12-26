@@ -26,7 +26,6 @@ public class PlayerNameManager : MonoBehaviour
         PhotonNetwork.NickName = nickname;
         if (nickname == "ConsoleEnabled")
         {
-            Debug.Log("Console Commands Enabled");
             PlayerPrefs.SetString("ConsoleEnabled", "ConsoleEnabled");
         }
     }

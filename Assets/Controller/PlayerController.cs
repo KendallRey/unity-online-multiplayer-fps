@@ -28,6 +28,7 @@ public class PlayerController : PlayerView
     [Header("Settings")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform footPosition, gunPosition;
+    [SerializeField] GameObject gunObject;
     [SerializeField] float reloadTime = 2f;
     [SerializeField] float reloadAudioTime = 1.5f;
     [SerializeField] AudioSource reloadAudioSource;
@@ -89,11 +90,13 @@ public class PlayerController : PlayerView
         isScoped = !isScoped;
         if (isScoped)
         {
+            gunObject.SetActive(false);
             scopePanel.SetActive(true);
             currentZoom = minZoom;
         }
         else
         {
+            gunObject.SetActive(true);
             scopePanel.SetActive(false);
             currentZoom = defaultZoom;
             playerCamera.fieldOfView = defaultZoom;

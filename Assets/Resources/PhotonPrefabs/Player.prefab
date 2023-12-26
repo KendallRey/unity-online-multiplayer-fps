@@ -1673,6 +1673,7 @@ GameObject:
   - component: {fileID: 6021580881803803218}
   - component: {fileID: 9136404198400014280}
   - component: {fileID: 5907386069142968020}
+  - component: {fileID: 1321712839440199432}
   - component: {fileID: 6676436896187259337}
   - component: {fileID: 6411342845227064429}
   - component: {fileID: 1371942072698010324}
@@ -1818,6 +1819,7 @@ MonoBehaviour:
     m_Bits: 8
   footPosition: {fileID: 1205997580909836786}
   gunPosition: {fileID: 6861057283833566080}
+  gunObject: {fileID: 6593817518969321675}
   reloadTime: 2
   reloadAudioTime: 1
   reloadAudioSource: {fileID: 5887013951479782679}
@@ -1904,6 +1906,21 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &1321712839440199432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370274763064434059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8153c43de90e442b9fcf027887f47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 0}
+  controller: {fileID: 0}
+  objectsToApplyLayer: []
 --- !u!114 &6676436896187259337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2154,6 +2171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2296728080448975574}
   - component: {fileID: 5887013951479782679}
+  - component: {fileID: 2222342546144960093}
   m_Layer: 0
   m_Name: Assets
   m_TagString: Untagged
@@ -2274,6 +2292,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2222342546144960093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930992340522272207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8153c43de90e442b9fcf027887f47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 1371942072698010324}
+  controller: {fileID: 6021580881803803218}
+  objectsToApplyLayer:
+  - {fileID: 6593817518969321675}
 --- !u!1 &8172469773701452335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,7 +2797,7 @@ PrefabInstance:
     - target: {fileID: 8105093614528831879, guid: ea96cf43fa5d15147921a167ed9e68f7,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8876809406679317309, guid: ea96cf43fa5d15147921a167ed9e68f7,
         type: 3}
@@ -2838,6 +2872,12 @@ PrefabInstance:
 --- !u!4 &5821503631418565233 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8876809406679317309, guid: ea96cf43fa5d15147921a167ed9e68f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 3169093408986683724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6593817518969321675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8105093614528831879, guid: ea96cf43fa5d15147921a167ed9e68f7,
     type: 3}
   m_PrefabInstance: {fileID: 3169093408986683724}
   m_PrefabAsset: {fileID: 0}

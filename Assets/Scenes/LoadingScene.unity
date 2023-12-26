@@ -288,7 +288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingText: {fileID: 257705221}
   cueText: {fileID: 1069287881}
-  lobbyScene: LobbyScene
 --- !u!4 &728504639
 Transform:
   m_ObjectHideFlags: 0
