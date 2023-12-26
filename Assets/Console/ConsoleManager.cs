@@ -25,7 +25,6 @@ public class ConsoleManager : MonoBehaviour
 
     public ConsoleItem AddConsoleItem(string text)
     {
-        Debug.Log("Console Command: " + text);
         ConsoleItem consoleItem = Instantiate(consoleItemPrefab, container).GetComponent<ConsoleItem>();
         consoleItem.CommandText.text = text;
         return consoleItem;

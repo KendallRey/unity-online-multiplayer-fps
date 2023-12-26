@@ -77,6 +77,7 @@ public class PlayerUIManager : PlayerView
     const string MakeMeInvisible = "MakeMeInvisible";
     public void OnEnterCommand(string commandText)
     {
+        if (!view.IsMine) return;
         string[] commands = commandText.Split(" ");
         if (commands.Length != 2) return;
         bool isTrue = commandText.Contains("true");
