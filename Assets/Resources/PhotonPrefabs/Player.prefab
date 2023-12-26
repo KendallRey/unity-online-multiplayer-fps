@@ -1923,7 +1923,6 @@ MonoBehaviour:
   controller: {fileID: 0}
   LayerName: 
   objectsToApplyLayer: []
-  ignoreIfMine: 1
 --- !u!114 &6676436896187259337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2313,7 +2312,6 @@ MonoBehaviour:
   LayerName: Weapons
   objectsToApplyLayer:
   - {fileID: 6593817518969321675}
-  ignoreIfMine: 1
 --- !u!114 &1236425202516406446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2331,7 +2329,6 @@ MonoBehaviour:
   LayerName: IgnoreRender
   objectsToApplyLayer:
   - {fileID: 1622653594109761765}
-  ignoreIfMine: 1
 --- !u!1 &8172469773701452335
 GameObject:
   m_ObjectHideFlags: 0
