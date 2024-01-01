@@ -1743,7 +1743,7 @@ MonoBehaviour:
   createRoomBtn: {fileID: 1249052733}
   joinRoomBtn: {fileID: 451268509}
   errorMessage: {fileID: 409157322}
-  sceneName: FloatingIsland
+  sceneName: GrassLand
 --- !u!4 &1286844328
 Transform:
   m_ObjectHideFlags: 0

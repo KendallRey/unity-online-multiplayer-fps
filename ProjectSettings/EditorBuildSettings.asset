@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MenuScene.unity
     guid: 4626d686524c15b499bc19902648e13b
+  - enabled: 1
+    path: Assets/Scenes/GrassLand.unity
+    guid: 629068549e8962144971438da715b38b
   m_configObjects: {}
