@@ -63,6 +63,7 @@ public class TurretController : MonoBehaviour
         direction = Vector3.ProjectOnPlane(direction, hardpoint.up);
         var signedAngle = Vector3.SignedAngle(hardpoint.forward, direction, hardpoint.up);
 
+
         outOfRange = false;
         if (Mathf.Abs(signedAngle) > angle)
         {
