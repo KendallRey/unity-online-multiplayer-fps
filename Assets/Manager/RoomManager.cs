@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using System.IO;
 
 public class RoomManager : MonoBehaviourPunCallbacks
