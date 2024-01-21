@@ -15,6 +15,9 @@ public class ScoreboardItem : MonoBehaviourPunCallbacks
 
     Player player;
 
+    public string GetScoreBoardName() => usernameText.text;
+    public int GetScoreBoardKills() => int.Parse(killsText.text);
+    public int GetScoreBoardDeaths() => int.Parse(deathsText.text);
     public void Initialize(Player player)
     {
         this.player = player;

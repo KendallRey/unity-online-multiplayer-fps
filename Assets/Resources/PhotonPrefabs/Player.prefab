@@ -629,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4421037756057682906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1938,6 +1938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 1371942072698010324}
   controller: {fileID: 6021580881803803218}
+  playerUICanvas: {fileID: 1560694544261005545}
   respawnButtons:
   - {fileID: 5157823924981700774}
   - {fileID: 6450761633715965624}

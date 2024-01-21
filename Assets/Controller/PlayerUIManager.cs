@@ -4,7 +4,7 @@ using Photon.Pun;
 
 public class PlayerUIManager : PlayerView
 {
-
+    [SerializeField] GameObject playerUICanvas;
     [SerializeField] Button[] respawnButtons;
     [SerializeField] Button[] quitButtons;
     [SerializeField] Button[] exitButtons;
@@ -13,6 +13,11 @@ public class PlayerUIManager : PlayerView
     public ConsoleManager ConsoleMananger { get => consoleManager; set => consoleManager = value; }
 
     bool isConsoleShowing = false;
+
+    public void OnEndGame()
+    {
+        playerUICanvas.SetActive(false);
+    }
     private void Start()
     {
         SetConsole();

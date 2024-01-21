@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Scoreboard : MonoBehaviourPunCallbacks
 {
@@ -21,6 +22,28 @@ public class Scoreboard : MonoBehaviourPunCallbacks
         }
     }
 
+    public KeyValuePair<Player, ScoreboardItem> GetWinnerPlayer()
+    {
+        return GetPlayerWithHighestKills(scoreboardItems);
+    }
+
+    static KeyValuePair<Player, ScoreboardItem> GetPlayerWithHighestKills(Dictionary<Player, ScoreboardItem> scoreboardItems)
+    {
+        KeyValuePair<Player, ScoreboardItem> playerWithHighestKills = scoreboardItems.OrderByDescending(kv => kv.Value.GetScoreBoardKills())
+                                                                                      .FirstOrDefault();
+
+        return playerWithHighestKills;
+    }
+
+    static KeyValuePair<Player, ScoreboardItem> GetPlayerWithBestStats(Dictionary<Player, ScoreboardItem> scoreboardItems)
+    {
+        // Use LINQ to order the items by kills in descending order and then by deaths in ascending order
+        KeyValuePair<Player, ScoreboardItem> playerWithBestStats = scoreboardItems.OrderByDescending(kv => kv.Value.GetScoreBoardKills())
+                                                                                      .ThenBy(kv => kv.Value.GetScoreBoardDeaths())
+                                                                                      .FirstOrDefault();
+
+        return playerWithBestStats;
+    }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {

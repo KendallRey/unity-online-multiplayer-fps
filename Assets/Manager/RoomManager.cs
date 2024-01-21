@@ -2,6 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviourPunCallbacks
 {
@@ -41,9 +42,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
 		// Check if the application is running in the Unity Editor
 		#if UNITY_EDITOR
 				UnityEditor.EditorApplication.isPlaying = false;
-		#else
+#else
 				// Quit the application when not in the Unity Editor
 				Application.Quit();
-		#endif
+#endif
+	}
+
+	public void QuitGame()
+	{
+		PhotonNetwork.LeaveRoom();
+		SceneManager.LoadScene(SceneConstants.LOBBY_SCENE);
 	}
 }

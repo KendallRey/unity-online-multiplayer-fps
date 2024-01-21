@@ -1,5 +1,7 @@
 using UnityEngine;
+using Photon.Realtime;
 using Photon.Pun;
+using System.Collections.Generic;
 using TMPro;
 
 public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
@@ -8,10 +10,17 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField] TextMeshProUGUI timerText;
     private float timer;
 
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] TextMeshProUGUI winnerNameText;
+    [SerializeField] TextMeshProUGUI killsText;
+
+    [SerializeField] Scoreboard scoreboard;
+    bool hasGameEnded = false;
+
     void Start()
     {
-        PhotonNetwork.SendRate = 30; // Adjust the send rate as needed
-        PhotonNetwork.SerializationRate = 30; // Adjust the serialization rate as needed
+        PhotonNetwork.SendRate = 30;
+        PhotonNetwork.SerializationRate = 30;
 
         if (PhotonNetwork.IsMasterClient)
         {
@@ -22,6 +31,7 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
+        if (hasGameEnded) return;
         if (PhotonNetwork.IsMasterClient)
         {
             timer -= Time.deltaTime;
@@ -33,6 +43,12 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
             }
 
             photonView.RPC(nameof(SyncTimer), RpcTarget.Others, timer);
+        }
+        
+        if(timer <= 0)
+        {
+            hasGameEnded = true;
+            EndGame();
         }
 
         UpdateTimerText();
@@ -55,12 +71,35 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
+            Debug.Log("Sender");
             stream.SendNext(timer);
         }
         else
         {
+            Debug.Log("Reciever");
             timerText.text = timer.ToString();
             timer = (float)stream.ReceiveNext();
         }
+    }
+
+    void EndGame()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        PlayerUIManager[] playerUIManagers = FindObjectsOfType<PlayerUIManager>();
+
+        foreach(PlayerUIManager playerUI in playerUIManagers)
+        {
+            playerUI.OnEndGame();
+        }
+
+        KeyValuePair<Player, ScoreboardItem> playerScore = scoreboard.GetWinnerPlayer();
+
+        string playerName = playerScore.Key.NickName;
+        int kills = playerScore.Value.GetScoreBoardKills();
+
+        winnerNameText.text = playerName;
+        killsText.text = "" + kills + " Kills !!!";
+
+        gameOverPanel.SetActive(true);
     }
 }
