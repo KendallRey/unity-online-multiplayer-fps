@@ -16,6 +16,7 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
 
     [SerializeField] Scoreboard scoreboard;
     bool hasGameEnded = false;
+    bool hasSynced = false;
 
     void Start()
     {
@@ -31,7 +32,6 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
-        if (hasGameEnded) return;
         if (PhotonNetwork.IsMasterClient)
         {
             timer -= Time.deltaTime;
@@ -44,8 +44,9 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
 
             photonView.RPC(nameof(SyncTimer), RpcTarget.Others, timer);
         }
-        
-        if(timer <= 0)
+
+        if (hasGameEnded) return;
+        if (timer <= 0 && (hasSynced || PhotonNetwork.IsMasterClient))
         {
             hasGameEnded = true;
             EndGame();
@@ -78,6 +79,7 @@ public class GameTimer : MonoBehaviourPunCallbacks, IPunObservable
         {
             Debug.Log("Reciever");
             timerText.text = timer.ToString();
+            hasSynced = true;
             timer = (float)stream.ReceiveNext();
         }
     }

@@ -629,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4421037756057682906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1946,6 +1946,7 @@ MonoBehaviour:
   - {fileID: 5002512549844626433}
   exitButtons:
   - {fileID: 5697449264415795813}
+  playerController: {fileID: 4640709614800370954}
 --- !u!114 &6411342845227064429
 MonoBehaviour:
   m_ObjectHideFlags: 0

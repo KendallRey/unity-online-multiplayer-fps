@@ -10,6 +10,7 @@ public class PlayerUIManager : PlayerView
     [SerializeField] Button[] exitButtons;
 
     ConsoleManager consoleManager;
+    [SerializeField] PlayerController playerController;
     public ConsoleManager ConsoleMananger { get => consoleManager; set => consoleManager = value; }
 
     bool isConsoleShowing = false;
@@ -17,6 +18,7 @@ public class PlayerUIManager : PlayerView
     public void OnEndGame()
     {
         playerUICanvas.SetActive(false);
+        playerController.enabled = false;
     }
     private void Start()
     {
