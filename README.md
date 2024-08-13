@@ -1,13 +1,13 @@
 # README to be updated
 
-## A Sample Temple for Multiplayer Unity with Photon Engine
+## A Sample Template for Multiplayer FPS in Unity with Photon Engine
 - Will not include installer (just zip). This is not meant for Production!
-- 
-
+- In development with Unity Editor Version `2022.3.15f1`
 
 ## Todo
 - [ ] Add steps for setting up / process
 - [ ] More images / video (optional)
+- [ ] Add links to used Assets
 
 ## Images / Screenshots
 
